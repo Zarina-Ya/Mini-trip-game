@@ -12,6 +12,7 @@ namespace ZarinkinProject
         [SerializeField] protected static bool _isDead;
 
         public abstract void Move(float x, float y, float z);
+        public abstract void Jump();
     }
 
 }

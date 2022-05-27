@@ -585,6 +585,14 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   _rb: {fileID: 0}
   _transform: {fileID: 0}
+  _playerHeight: 0.5
+  _jumpForce: 2
+  _groundDrag: 6
+  _airDrag: 2
+  _isGrounded: 0
+  _moveMulti: 10
+  _moveAirMulti: 0.4
+  _moveDirection: {x: 0, y: 0, z: 0}
 --- !u!136 &7649951813938471239
 CapsuleCollider:
   m_ObjectHideFlags: 0

@@ -21,6 +21,11 @@ namespace ZarinkinProject
             _horizontal = Input.GetAxis("Horizontal");
             _vertical = Input.GetAxis("Vertical");
             _player.Move(_horizontal, 0, _vertical);
+
+            if (Input.GetKey(KeyCode.Space))
+            {
+                _player.Jump();
+            }
         }
     }
 

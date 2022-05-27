@@ -7,7 +7,7 @@ namespace ZarinkinProject
     public abstract class Bonus : MonoBehaviour, IExecute
     {
         private bool _isInteractable;
-        protected Transform _transform;
+        public Transform _transform;
 
 
 
