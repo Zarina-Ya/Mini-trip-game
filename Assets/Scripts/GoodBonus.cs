@@ -15,7 +15,7 @@ namespace ZarinkinProject
 
         public int Point = 1;
 
-        public event Action<int> AddPoints = delegate (int point) { };
+        public static event Action<int> AddPoints = delegate (int point) { };
 
         private void Awake()
         {

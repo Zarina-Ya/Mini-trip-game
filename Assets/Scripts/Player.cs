@@ -1,12 +1,14 @@
-﻿using UnityEngine;
+﻿using System;
+using UnityEngine;
 namespace ZarinkinProject
 {
     public sealed class Player : Unit
     {
         private Animator anim;
         private float _jumpForce = 2f;
-        private float _turnSpeed = 0.9f; 
+        private float _turnSpeed = 0.9f;
 
+        private int _countPoints = 0;
 
         [Header("Рост персонажа")]
         [SerializeField] private float _playerHeight = 0.5f;
@@ -22,8 +24,11 @@ namespace ZarinkinProject
         [SerializeField] private float _moveMulti = 10f;
         [SerializeField] private float _moveAirMulti = 0.4f;
 
+        public static event Action<int> PlayerPoints = delegate (int point) { };
 
         private Vector3 _moveDirection;
+
+        public int CountPoints { get => _countPoints; set => _countPoints = value; }
 
         private void Awake()
         {
@@ -32,6 +37,10 @@ namespace ZarinkinProject
             _isDead = false;
 
             anim = gameObject.GetComponent<Animator>();
+
+
+            GoodBonus.AddPoints += UpdatePoints;
+            BadBonus.OnCaughtPlayer += ControlSpeed;
         }
 
         public override void Move(float x, float y, float z)
@@ -78,8 +87,26 @@ namespace ZarinkinProject
                 _rb.AddForce(transform.up * _jumpForce, ForceMode.Impulse);
         }
 
-        
+        public void UpdatePoints(int points)
+        {
+           CountPoints += points;
+            PlayerPoints.Invoke(CountPoints);
+        }
 
+
+        void ControlSpeed(float time)
+        {
+            _moveMulti /= 2;
+            _moveAirMulti /= 2;
+
+            Invoke("ReturnState", time);
+        }
+
+        void ReturnState()
+        {
+            _moveMulti *= 2;
+            _moveAirMulti *= 2; 
+        }
     }
 
 

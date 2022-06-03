@@ -1,7 +1,7 @@
 ﻿using System;
 using System.Collections.Generic;
 using UnityEngine;
-
+using UnityEngine.Rendering.PostProcessing;
 
 using Random = UnityEngine.Random;
 namespace ZarinkinProject
@@ -13,14 +13,23 @@ namespace ZarinkinProject
         private float _rotationSpeed;
         [SerializeField] private float initial_position;
 
-        public event Action<string, Color> OnCaughtPlayer = delegate(string name, Color color) { };
+        public static event Action<float> OnCaughtPlayer = delegate(float time) { };
 
+
+        [Header("PostProcess")]
+        private PostProcessVolume processVolume;
+        private ChromaticAberration chromatic = null;
+        [SerializeField] private float _timeStateProccesing = 5f;
         private void Awake()
         {
             _transform = transform;
             _heightFly = Random.Range(0, 2f);
             _rotationSpeed = Random.Range(10f, 30f);
             initial_position = _transform.position.y;
+
+
+
+            processVolume = GetComponent<PostProcessVolume>();
         }
 
         public void Fly()
@@ -42,7 +51,18 @@ namespace ZarinkinProject
 
         protected override void Interaction()// Реадизация события ответа , на взаимодействие 
         {
-            OnCaughtPlayer.Invoke(this.name, _color);
+           
+            processVolume.profile.TryGetSettings(out chromatic);
+
+            chromatic.enabled.value = true;
+            chromatic.intensity.value = 1f;
+            OnCaughtPlayer.Invoke(_timeStateProccesing);
+            Invoke("ReturnState", _timeStateProccesing);
+        }
+
+        private void ReturnState()
+        {
+            chromatic.enabled.value = false;
         }
     }
 }
