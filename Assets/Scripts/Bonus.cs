@@ -8,38 +8,40 @@ namespace ZarinkinProject
     {
         private bool _isInteractable;
         public Transform _transform;
+        protected Color _color;
 
-
-
-        private void Awake()
-        {
-            _transform = transform;
-        }
-
-
-        private void Start()
-        {
-            _isInteractable = true;
-        }
-
-
-
-
-        public bool IsInteractable { get { return _isInteractable; }
-            private set
+        public bool IsInteractable { get => _isInteractable; private set
             {
                 _isInteractable = value;
                 GetComponent<Renderer>().enabled = value;
                 GetComponent<Collider>().enabled = value;
-            }  
+            }
         }
 
-        private void OnTriggerEnter(Collider other)
+        private void Start()
         {
-            if (other.CompareTag("Player"))
+            IsInteractable = true;
+
+            _color = Random.ColorHSV();
+
+
+            if(TryGetComponent(out Renderer renderer))
+            {
+                renderer.sharedMaterial.color = _color;
+            }
+         
+        }
+
+
+
+    
+
+        public void OnTriggerEnter(Collider other)
+        {
+            if (IsInteractable || other.CompareTag("Player"))
             {
                 Interaction();
-                _isInteractable = false;
+                IsInteractable = false;
             }
                 
         }
