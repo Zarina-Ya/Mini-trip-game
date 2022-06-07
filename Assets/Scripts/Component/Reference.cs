@@ -11,6 +11,8 @@ namespace ZarinkinProject
         private GameObject _endGameLabel;
         private GameObject _restartButton;
 
+        private GameObject _winGameLabel;
+
         private Canvas _canvas;
         private Camera _mainCamera;
 
@@ -65,5 +67,18 @@ namespace ZarinkinProject
             }
 
             set => _mainCamera = value; }
+
+        public GameObject WinGameLabel { get
+            {
+                if (_winGameLabel == null)
+                {
+                    GameObject winGamePrefab = Resources.Load<GameObject>("UI/WinPanel");
+                    //GameObject endGamePrefab = Resources.Load<GameObject>("UI/TextEnd");
+                    _winGameLabel = Object.Instantiate(winGamePrefab, Canvas.transform);
+                }
+                return _winGameLabel;
+
+            }
+            set => _winGameLabel = value; }
     }
 }

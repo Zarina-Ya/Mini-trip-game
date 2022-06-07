@@ -16,6 +16,7 @@ namespace ZarinkinProject
 
         private ViewBonus _viewBonus;
         private ViewEndGame _viewEndGame;
+        private ViewWin _viewWin;
 
         private int _bonusCount;
 
@@ -23,6 +24,9 @@ namespace ZarinkinProject
         private CameraController _cameraController;
 
         private float _processingStateBadBonus = 5f;
+
+        [Header("Количество бонусов для победы")]
+        [SerializeField] private int _numberBonusesWin = 3;
 
         [SerializeField] private Button _restartButton;
         private void Awake()
@@ -32,17 +36,19 @@ namespace ZarinkinProject
             _inputController = new InputController(_player.GetComponent<Unit>());
             _interactiveObject = new ListExecuteObject();
 
-
+            _cameraController = new CameraController(_player.transform, _reference.MainCamera.transform);
             //Canvas
             _viewBonus = new ViewBonus(_reference.BonusLabel);
             _viewEndGame = new ViewEndGame(_reference.EndGameLabel);
+            _viewWin = new ViewWin(_reference.WinGameLabel);
+
             _restartButton.onClick.AddListener(RestartGame);
             _restartButton.gameObject.SetActive(false);
 
 
 
             _interactiveObject.AddExecuteObject(_inputController);
-
+            _interactiveObject.AddExecuteObject(_cameraController);
 
 
 
@@ -60,7 +66,7 @@ namespace ZarinkinProject
 
                 }
             }
-            //_cameraController = new CameraController(_player.transform, _reference.MainCamera.transform);!!!!!!!!!!!!!!!!!!!
+            
         }
 
 
@@ -73,22 +79,39 @@ namespace ZarinkinProject
         private void AddBonus(int bonus)
         {
             _bonusCount += bonus;
-            _viewBonus.Display(_bonusCount);
+
+            if(_bonusCount >= _numberBonusesWin)
+            {
+                WinCheck();
+            }
+            else
+                _viewBonus.Display(_bonusCount);
         }
 
         private void CaughtPlayer(float time)
         {
             _player.GetComponent<Player>().ControlSpeed(time);
 
-            // Invoke("TestButtonCheck", 7f);
-            TestButtonCheck();
+             Invoke("TestButtonCheck", 7f);
+            
         }
 
+
+        private void WinCheck()
+        {
+            _viewWin.Display();
+            AddButtonRestart();
+        }
+
+        void AddButtonRestart()
+        {
+            _restartButton.gameObject.SetActive(true);
+            StopTime(true);
+        }
         void TestButtonCheck()
         {
             _viewEndGame.GameOver();
-            _restartButton.gameObject.SetActive(true);
-            StopTime(true);
+            AddButtonRestart();
         }
 
         void Update()
