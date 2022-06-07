@@ -13,13 +13,16 @@ namespace ZarinkinProject
         private float _rotationSpeed;
         [SerializeField] private float initial_position;
 
-        public static event Action<float> OnCaughtPlayer = delegate(float time) { };
+        public /*static*/ event Action<float> OnCaughtPlayer = delegate(float time) { };
 
 
         [Header("PostProcess")]
         private PostProcessVolume processVolume;
         private ChromaticAberration chromatic = null;
         [SerializeField] private float _timeStateProccesing = 5f;
+
+        public float TimeStateProccesing { get => _timeStateProccesing; set => _timeStateProccesing = value; }
+
         private void Awake()
         {
             _transform = transform;
@@ -35,7 +38,7 @@ namespace ZarinkinProject
         public void Fly()
         {
             _transform.position = new Vector3(_transform.position.x, initial_position + Mathf.PingPong(Time.time, _heightFly), _transform.position.z);
-            Debug.Log(initial_position + Mathf.PingPong(Time.time, _heightFly));
+           // Debug.Log(initial_position + Mathf.PingPong(Time.time, _heightFly));
         }
 
         public void IRotation()
@@ -56,8 +59,8 @@ namespace ZarinkinProject
 
             chromatic.enabled.value = true;
             chromatic.intensity.value = 1f;
-            OnCaughtPlayer.Invoke(_timeStateProccesing);
-            Invoke("ReturnState", _timeStateProccesing);
+            OnCaughtPlayer.Invoke(TimeStateProccesing);
+            Invoke("ReturnState", TimeStateProccesing);
         }
 
         private void ReturnState()

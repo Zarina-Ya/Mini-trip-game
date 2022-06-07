@@ -39,8 +39,8 @@ namespace ZarinkinProject
             anim = gameObject.GetComponent<Animator>();
 
 
-            GoodBonus.AddPoints += UpdatePoints;
-            BadBonus.OnCaughtPlayer += ControlSpeed;
+           // GoodBonus.AddPoints += UpdatePoints;
+            //BadBonus.OnCaughtPlayer += ControlSpeed;
         }
 
         public override void Move(float x, float y, float z)
@@ -87,14 +87,14 @@ namespace ZarinkinProject
                 _rb.AddForce(transform.up * _jumpForce, ForceMode.Impulse);
         }
 
-        public void UpdatePoints(int points)
-        {
-           CountPoints += points;
-            PlayerPoints.Invoke(CountPoints);
-        }
+        //public void UpdatePoints(int points)
+        //{
+        //   CountPoints += points;
+        //    PlayerPoints.Invoke(CountPoints);
+        //}
 
 
-        void ControlSpeed(float time)
+        public void ControlSpeed(float time)
         {
             _moveMulti /= 2;
             _moveAirMulti /= 2;

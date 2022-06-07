@@ -15,7 +15,7 @@ namespace ZarinkinProject
 
         public int Point = 1;
 
-        public static event Action<int> AddPoints = delegate (int point) { };
+        public /*static*/ event Action<int> AddPoints = delegate (int point) { };
 
         private void Awake()
         {
@@ -31,7 +31,7 @@ namespace ZarinkinProject
         public void Fly()
         {
             _transform.position = new Vector3(_transform.position.x, initial_position + Mathf.PingPong(Time.time, _heightFly), _transform.position.z);
-            Debug.Log(initial_position + Mathf.PingPong(Time.time, _heightFly));
+            //Debug.Log(initial_position + Mathf.PingPong(Time.time, _heightFly));
         }
     
 
