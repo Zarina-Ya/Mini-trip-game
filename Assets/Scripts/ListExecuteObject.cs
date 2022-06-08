@@ -1,6 +1,7 @@
 ﻿using System.Collections;
 using System;
 using UnityEngine;
+using Object = UnityEngine.Object;
 
 namespace ZarinkinProject
 {
@@ -14,6 +15,21 @@ namespace ZarinkinProject
         public int Lenght => _interactableObject.Length;
         public object Current => _interactableObject[_index];
 
+
+
+        public ListExecuteObject()
+        {
+            Bonus[] BonusObject = Object.FindObjectsOfType<Bonus>();
+            for (int i = 0; i < BonusObject.Length; i++)
+            {
+               if(BonusObject[i] is IExecute intObj)
+                {
+                    AddExecuteObject(BonusObject[i]);
+                }
+                  
+            }
+
+        }
         public IExecute this[int curr]
         {
             get { return _interactableObject[curr]; }
