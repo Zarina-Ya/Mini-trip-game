@@ -4,8 +4,18 @@ using UnityEngine;
 
 namespace ZarinkinProject
 {
+    public struct BonusData
+    {
+        public string BonusName;
+        public string BonusType;
+        public SVector3 BonusPosition;
+
+    }
+
     public abstract class Bonus : MonoBehaviour, IExecute
     {
+        
+
         private bool _isInteractable;
         public Transform _transform;
         protected Color _color;
@@ -17,6 +27,8 @@ namespace ZarinkinProject
                 GetComponent<Collider>().enabled = value;
             }
         }
+
+       
 
         private void Start()
         {
@@ -49,6 +61,8 @@ namespace ZarinkinProject
 
         public abstract void Update();
         protected abstract void Interaction();
+
+        public abstract void SaveBonus();
     }
 }
 

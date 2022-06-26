@@ -1,6 +1,8 @@
 ﻿using UnityEngine;
 using UnityEngine.UI;
 using UnityEngine.SceneManagement;
+using System.Collections.Generic;
+
 namespace ZarinkinProject
 {
     public class Main : MonoBehaviour
@@ -125,14 +127,43 @@ namespace ZarinkinProject
 
                 _interactiveObject[i].Update();
             }
+
+            if (Input.GetKeyDown(KeyCode.Q))
+            {
+                SaveBonusData();
+            }
+
         }
 
+        void SaveBonusData()
+        {
+            JSONData jSONData = new JSONData();
+            jSONData.ClearFile();
+            //List<Bonus> arrBonus = new List<Bonus>();
+            foreach (var item in _interactiveObject)
+            {
+                if (item is GoodBonus goodBonus || item is BadBonus badBonus)
+                {
+                    Bonus bonus = item as Bonus;
+                   // arrBonus.Add(bonus);
+                    bonus.SaveBonus();
+                }
+           
+            }
+
+    
+
+        }
 
         void StopTime(bool flag)
         {
             if(flag) Time.timeScale = 0f;
             else Time.timeScale = 1f;
         }
+
+       
     }
+
+    
 
 }

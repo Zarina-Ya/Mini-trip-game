@@ -5,6 +5,10 @@ namespace ZarinkinProject
 {
     public class GoodBonus : Bonus, IFly, IFlicker
     {
+
+        BonusData SingleBonusData = new BonusData();
+        private ISaveData<BonusData> _saveData;
+
         private float _heightFly = 2f;
         [Header("Начальная позация в мире")]
         [SerializeField] private float initial_position;
@@ -22,6 +26,13 @@ namespace ZarinkinProject
             _transform = transform;
             initial_position = _transform.position.y;
             _material = GetComponent<Renderer>().material;
+
+            SingleBonusData.BonusName = gameObject.name;
+            SingleBonusData.BonusType = gameObject.GetType().Name;
+            SingleBonusData.BonusPosition = transform.position;
+            _saveData = new JSONData();
+            //_saveData = new StreamData<BonusData>();
+          //  _saveData.SaveData(SingleBonusData);
         }
         public void Flick()
         {
@@ -44,6 +55,12 @@ namespace ZarinkinProject
         protected override void Interaction()
         {
             AddPoints.Invoke(Point);
+        }
+
+        public override void SaveBonus()
+        {
+            _saveData.SaveData(SingleBonusData);
+            //BonusData newBonusData = _saveData.Load();
         }
     }
 }
