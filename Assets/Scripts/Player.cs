@@ -2,8 +2,19 @@
 using UnityEngine;
 namespace ZarinkinProject
 {
+    public struct PlayerData
+    {
+        public string PlayerName;
+        public int PlayerHealth;
+        public bool PlayerDead;
+        public SVector3 PlayerPosition;
+    }
+
     public sealed class Player : Unit
     {
+        PlayerData SinglePlayerData = new PlayerData();
+        private ISaveData<PlayerData> _saveData;
+
         private Animator anim;
         private float _jumpForce = 2f;
         private float _turnSpeed = 0.9f;
@@ -35,8 +46,18 @@ namespace ZarinkinProject
             _transform = transform;
             _rb = GetComponent<Rigidbody>();
             _isDead = false;
-
+            _heath = 100;
             anim = gameObject.GetComponent<Animator>();
+
+          
+            SinglePlayerData.PlayerHealth = _heath;
+            SinglePlayerData.PlayerDead = _isDead;
+            SinglePlayerData.PlayerName = gameObject.name;
+
+            //_saveData = new JSONData();
+            _saveData = new StreamData<PlayerData>();
+            _saveData.SaveData(SinglePlayerData);
+
 
 
            // GoodBonus.AddPoints += UpdatePoints;
@@ -51,6 +72,8 @@ namespace ZarinkinProject
 
             Input(x,z);
             ControlDrag();
+
+            SinglePlayerData.PlayerPosition = _transform.position;
         }
 
         private void FixedUpdate()
@@ -106,6 +129,18 @@ namespace ZarinkinProject
         {
             _moveMulti *= 2;
             _moveAirMulti *= 2; 
+        }
+
+
+        public override void SavePlayer()
+        {
+            _saveData.SaveData(SinglePlayerData);
+            PlayerData newPlayerData = _saveData.Load();
+
+            Debug.Log(newPlayerData.PlayerName);
+            Debug.Log(newPlayerData.PlayerPosition);
+            Debug.Log(newPlayerData.PlayerDead);
+            Debug.Log(newPlayerData.PlayerHealth);
         }
     }
 

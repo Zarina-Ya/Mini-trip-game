@@ -8,6 +8,10 @@ namespace ZarinkinProject
 {
     public class BadBonus : Bonus, IRotation, IFly
     {
+        BonusData SingleBonusData = new BonusData();
+        private ISaveData<BonusData> _saveData;
+
+
 
         private float _heightFly;
         private float _rotationSpeed;
@@ -33,7 +37,18 @@ namespace ZarinkinProject
 
 
             processVolume = GetComponent<PostProcessVolume>();
+
+
+            SingleBonusData.BonusName = gameObject.name;
+            SingleBonusData.BonusType = gameObject.GetType().Name;
+            SingleBonusData.BonusPosition = transform.position;
+            _saveData = new JSONData();
+            //_saveData = new StreamData<BonusData>();
+            //_saveData.SaveData(SingleBonusData);
+
         }
+
+
 
         public void Fly()
         {
@@ -50,6 +65,7 @@ namespace ZarinkinProject
         {
             Fly();
             IRotation();
+           
         }
 
         protected override void Interaction()// Реадизация события ответа , на взаимодействие 
@@ -67,6 +83,15 @@ namespace ZarinkinProject
         {
             chromatic.enabled.value = false;
         }
+
+
+        public override void SaveBonus()
+        {
+            _saveData.SaveData(SingleBonusData);
+            //BonusData newBonusData = _saveData.Load();
+
+        }
+
     }
 }
 
