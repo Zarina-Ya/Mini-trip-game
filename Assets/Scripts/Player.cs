@@ -55,8 +55,9 @@ namespace ZarinkinProject
             SinglePlayerData.PlayerName = gameObject.name;
 
             //_saveData = new JSONData();
-            _saveData = new StreamData<PlayerData>();
-            _saveData.SaveData(SinglePlayerData);
+            //_saveData = new StreamData<PlayerData>();
+            _saveData = new XMLData();
+           // _saveData.SaveData(SinglePlayerData);
 
 
 

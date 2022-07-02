@@ -1,1 +1,38 @@
-{"BonusName":"BonusMushroom","BonusType":"GameObject","BonusPosition":{"X":11.869999885559082,"Y":5.090000152587891,"Z":22.4778995513916}}{"BonusName":"BonusFlower (1)","BonusType":"GameObject","BonusPosition":{"X":20.722999572753908,"Y":5.366000175476074,"Z":34.57600021362305}}{"BonusName":"BonusFlower (2)","BonusType":"GameObject","BonusPosition":{"X":20.722999572753908,"Y":5.046000003814697,"Z":36.42900085449219}}{"BonusName":"BonusFlower","BonusType":"GameObject","BonusPosition":{"X":20.722999572753908,"Y":6.260000228881836,"Z":30.639999389648439}}
+[
+  {
+    "BonusName": "BonusMushroom",
+    "BonusType": "GameObject",
+    "BonusPosition": {
+      "X": 11.869999885559082,
+      "Y": 5.090000152587891,
+      "Z": 22.4778995513916
+    }
+  },
+  {
+    "BonusName": "BonusFlower (1)",
+    "BonusType": "GameObject",
+    "BonusPosition": {
+      "X": 20.722999572753908,
+      "Y": 5.366000175476074,
+      "Z": 34.57600021362305
+    }
+  },
+  {
+    "BonusName": "BonusFlower (2)",
+    "BonusType": "GameObject",
+    "BonusPosition": {
+      "X": 20.722999572753908,
+      "Y": 5.046000003814697,
+      "Z": 36.42900085449219
+    }
+  },
+  {
+    "BonusName": "BonusFlower",
+    "BonusType": "GameObject",
+    "BonusPosition": {
+      "X": 20.722999572753908,
+      "Y": 6.260000228881836,
+      "Z": 30.639999389648439
+    }
+  }
+]

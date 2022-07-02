@@ -1,0 +1,5 @@
+<Player>
+  <PlayerName value="MyAstronaut" />
+  <PlayerHealth value="100" />
+  <IsDead value="False" />
+</Player>

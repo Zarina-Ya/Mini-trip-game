@@ -1,0 +1,45 @@
+﻿{
+  "Items": [
+    {
+      "_id": "Key",
+      "EN": "English",
+      "FR": "French",
+      "RU": "Русский"
+    },
+    {
+      "_id": "id_NameGame",
+      "EN": "Mini trip",
+      "FR": "Mini voyage",
+      "RU": "Мини путешествие"
+
+    },
+    {
+      "_id": "id_start",
+      "EN": "Start",
+      "FR": "Start",
+      "RU": "Начать"
+
+    },
+    {
+      "_id": "id_languages",
+      "EN": "Languages",
+      "FR": "Langue",
+      "RU": "Языки"
+
+    },
+    {
+      "_id": "id_quit",
+      "EN": "Quit",
+      "FR": "Quitter",
+      "RU": "Выйти"
+
+    },
+    {
+      "_id": "id_back",
+      "EN": "Back",
+      "FR": "Arrière",
+      "RU": "Назад"
+
+    }
+  ]
+}
