@@ -11,5 +11,11 @@ namespace ZarinkinProject
         {
             EditorWindow.GetWindow(typeof(GenerateBonuses), false, "Генерация бонусов");
         }
+        [MenuItem("ZarinkinProject/Generate Localisation")]
+        static void GenerateLocalisation()
+        {
+            EditorWindow.GetWindow(typeof(GenerateLocalisation), false, "Localisation window");
+        }
+
     }
 }

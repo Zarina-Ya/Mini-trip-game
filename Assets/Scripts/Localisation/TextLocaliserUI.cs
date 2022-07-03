@@ -9,13 +9,13 @@ namespace ZarinkinProject
     {
 
         public TextMeshProUGUI textField;
-        public string key;
+        public LocalisedString localisedString;
    
         void Start()
         {
             textField = GetComponent<TextMeshProUGUI>();
-            string value = LocalisationSystem.GetLocalisedValue(key);
-            textField.text = value;
+            
+            textField.text = localisedString.value;
         }
 
 

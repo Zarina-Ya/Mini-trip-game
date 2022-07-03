@@ -1041,7 +1041,8 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   textField: {fileID: 934909600}
-  key: id_languages
+  localisedString:
+    key: id_languages
 --- !u!1 &958882087
 GameObject:
   m_ObjectHideFlags: 0
@@ -1257,7 +1258,8 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   textField: {fileID: 1020323884}
-  key: id_start
+  localisedString:
+    key: id_start
 --- !u!1 &1126057208
 GameObject:
   m_ObjectHideFlags: 0
@@ -1407,7 +1409,8 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   textField: {fileID: 1126057210}
-  key: id_quit
+  localisedString:
+    key: id_quit
 --- !u!1 &1220637073
 GameObject:
   m_ObjectHideFlags: 0
@@ -1685,7 +1688,8 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   textField: {fileID: 1421364316}
-  key: id_NameGame
+  localisedString:
+    key: id_NameGame
 --- !u!1 &1452172654
 GameObject:
   m_ObjectHideFlags: 0
@@ -2327,7 +2331,8 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   textField: {fileID: 1861215386}
-  key: id_back
+  localisedString:
+    key: id_back
 --- !u!1 &2072974564
 GameObject:
   m_ObjectHideFlags: 0
